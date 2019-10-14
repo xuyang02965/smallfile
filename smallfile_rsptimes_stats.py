@@ -126,7 +126,7 @@ def reduce_thread_set( sorted_samples_tuple, from_time=0, to_time=time_infinity 
         sorted_times = sorted(map(get_rsp_time, sorted_samples[start_index:end_index]))
     sample_count = len(sorted_times)
     if sample_count < min_rsptime_samples:
-	return None
+        return None
     mintime = sorted_times[0]
     maxtime = sorted_times[-1]
     mean = scipy.stats.tmean(sorted_times)
@@ -142,7 +142,7 @@ def reduce_thread_set( sorted_samples_tuple, from_time=0, to_time=time_infinity 
 
 def format_stats(all_stats):
     if all_stats == None:
-	return ' 0,,,,,' + ',,,,,,,,,,,,,,,,'[0:len(percentiles)-1]
+        return ' 0,,,,,' + ',,,,,,,,,,,,,,,,'[0:len(percentiles)-1]
     (sample_count, mintime, maxtime, mean, pctdev, pctiles) = all_stats
     partial_record = '%d, %f, %f, %f, %f, ' % (
             sample_count, mintime, maxtime, mean, pctdev)
@@ -264,7 +264,7 @@ with open(summary_pathname, 'w') as outf:
     # if there is only 1 thread per host, no need for per-host stats
     # assumption: all hosts have 1 thread/host or all hosts have > 1 thread/host
 
-    first_host = hosts[hosts.keys()[0]]
+    first_host = hosts[list(hosts.keys())[0]]
     if len(first_host.keys()) > 1:
         outf.write('per-host stats:\n')
         for h in sorted(hosts.keys()):
